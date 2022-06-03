@@ -1,74 +1,26 @@
 [
     {
-        "id": 0,
+        "_id": 0,
         "name": "Gan356 Air SM",
         "imageUrl": "https://ae01.alicdn.com/kf/HTB1CSddXRxRMKJjy0Fdq6yifFXa6/Gan-356-Air-SM-3x3-Black-Magic-cube-GAN-Air-SM-Magnetic-3x3x3-Speed-cube-gans.jpg",
         "difficultyLevel": 3
     },
     {
-        "id": 1,
+        "_id": 1,
         "name": "Eco-Dark",
         "imageUrl": "https://thingsidesire.com/wp-content/uploads/2018/06/Eco-Dark-Rubik%E2%80%99s-Cube2.jpg",
         "difficultyLevel": 5
     },
     {
-        "id": 2,
+        "_id": 2,
         "name": "Eco-Dark 2",
         "imageUrl": "https://thingsidesire.com/wp-content/uploads/2018/06/Eco-Dark-Rubik%E2%80%99s-Cube2.jpg",
         "difficultyLevel": 6
     },
     {
-        "id": 3,
+        "_id": 3,
         "name": "Gan256 Air XM",
         "imageUrl": "https://ae01.alicdn.com/kf/HTB1CSddXRxRMKJjy0Fdq6yifFXa6/Gan-356-Air-SM-3x3-Black-Magic-cube-GAN-Air-SM-Magnetic-3x3x3-Speed-cube-gans.jpg",
         "difficultyLevel": 4
-    },
-    {
-        "id": 4,
-        "name": "Test",
-        "description": "test",
-        "imageUrl": "https://www.ubuy.vn/productimg/?image=aHR0cHM6Ly9pNS53YWxtYXJ0aW1hZ2VzLmNvbS9hc3IvYmE3MmFkZWEtMjQ5OC00YTk3LWJlMTItYTU1OTJkMzBmNDEzLjc4MWExOWRlYjQ1MGM1MmJkOWY5MmIzMjEyM2NlMmFiLmpwZWc.jpg",
-        "difficultyLevel": "1"
-    },
-    {
-        "id": 5,
-        "name": "Classic Rubic",
-        "description": "Classic",
-        "imageUrl": "https://www.ubuy.vn/productimg/?image=aHR0cHM6Ly9pNS53YWxtYXJ0aW1hZ2VzLmNvbS9hc3IvYmE3MmFkZWEtMjQ5OC00YTk3LWJlMTItYTU1OTJkMzBmNDEzLjc4MWExOWRlYjQ1MGM1MmJkOWY5MmIzMjEyM2NlMmFiLmpwZWc.jpg",
-        "difficultyLevel": "1"
-    },
-    {
-        "id": 6,
-        "name": "Classic Rubic 2",
-        "description": "Classic Rubic 2 testing",
-        "imageUrl": "https://www.ubuy.vn/productimg/?image=aHR0cHM6Ly9pNS53YWxtYXJ0aW1hZ2VzLmNvbS9hc3IvYmE3MmFkZWEtMjQ5OC00YTk3LWJlMTItYTU1OTJkMzBmNDEzLjc4MWExOWRlYjQ1MGM1MmJkOWY5MmIzMjEyM2NlMmFiLmpwZWc.jpg",
-        "difficultyLevel": "1"
-    },
-    {
-        "id": 7,
-        "name": "Classic Rubic 3",
-        "description": "testing 3",
-        "imageUrl": "https://www.ubuy.vn/productimg/?image=aHR0cHM6Ly9pNS53YWxtYXJ0aW1hZ2VzLmNvbS9hc3IvYmE3MmFkZWEtMjQ5OC00YTk3LWJlMTItYTU1OTJkMzBmNDEzLjc4MWExOWRlYjQ1MGM1MmJkOWY5MmIzMjEyM2NlMmFiLmpwZWc.jpg",
-        "difficultyLevel": "1"
-    },
-    {
-        "id": 8,
-        "name": "test 6",
-        "description": "test 6",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Rubik%27s_cube.svg/1966px-Rubik%27s_cube.svg.png",
-        "difficultyLevel": "1"
-    },
-    {
-        "id": 9,
-        "name": "test 7",
-        "description": "test 7",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Rubik%27s_cube.svg/1966px-Rubik%27s_cube.svg.png",
-        "difficultyLevel": "1"
-    },
-    {
-        "id": 10,
-        "name": "Gan356 Air SM",
-        "imageUrl": "https://ae01.alicdn.com/kf/HTB1CSddXRxRMKJjy0Fdq6yifFXa6/Gan-356-Air-SM-3x3-Black-Magic-cube-GAN-Air-SM-Magnetic-3x3x3-Speed-cube-gans.jpg",
-        "difficultyLevel": 6
     }
 ]
