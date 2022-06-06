@@ -11,11 +11,7 @@
   <div class="accessories">
 
     {{#each cube.accessories}}
-    <div class="accessory">
-      <img src="{{imageUrl}}" alt="{{name}}">
-      <h3>{{name}}</h3>
-      <p>{{description}}</p>
-    </div>
+      {{> accessory}}
     {{else}}
     <h3 class="italic">This cube has no accessories yet...</h3>
     {{/each}}
