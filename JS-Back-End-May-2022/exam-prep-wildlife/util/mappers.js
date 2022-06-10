@@ -17,6 +17,7 @@ function mapErrors(err) {
 
 function postViewModel(post) {
     return {
+        _id: post._id,
         title: post.title,
         keyword: post.keyword,
         location: post.location,
