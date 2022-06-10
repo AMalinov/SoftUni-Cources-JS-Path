@@ -19,9 +19,8 @@ router.post('/register', isGuest(), async (req, res) => {
 
         const user = await register(req.body.firstName, req.body.lastName, req.body.email, req.body.password);
         req.session.user = user;
-        res.redirect('/'); // TODO check redirect requirements
+        res.redirect('/');
     } catch (err) {
-        //TODO send error messages
         console.log(err);
         const errors = mapErrors(err);
         const data = {
@@ -39,15 +38,12 @@ router.get('/login', isGuest(), (req, res) => {
     res.render('login', { title: 'Login Page' });
 });
 
-//TODO check form action, method, field names
 
 router.post('/login', isGuest(), async (req, res) => {
     try {
         const user = await login(req.body.email, req.body.password);
         req.session.user = user;
-        res.redirect('/'); // TODO check redirect requirements
     } catch (err) {
-        //TODO send error messages
         const errors = mapErrors(err);
         res.render('login', { title: 'Login Page', data: { email: req.body.email }, errors });
         console.log(err);
