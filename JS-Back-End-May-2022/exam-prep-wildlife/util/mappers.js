@@ -25,7 +25,7 @@ function postViewModel(post) {
         image: post.image,
         description: post.description,
         author: authorViewModel(post.author),
-        votes: post.votes,
+        votes: post.votes.map(voterViewModel),
         rating: post.rating,
     };
 }
@@ -35,6 +35,13 @@ function authorViewModel(user) {
         _id: user._id,
         firstName: user.firstName,
         lastName: user.lastName
+    };
+}
+
+function voterViewModel(user) {
+    return {
+        _id: user._id,
+        email: user.email
     };
 }
 
