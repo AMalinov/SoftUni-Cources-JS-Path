@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const { isUser, isGuest } = require('../middleware/guards');
 const { register, login } = require('../services/user');
-const mapErrors = require('../util/mappers');
+const { mapErrors } = require('../util/mappers');
 
 
 router.get('/register', isGuest(), (req, res) => {
@@ -43,9 +43,11 @@ router.post('/login', isGuest(), async (req, res) => {
     try {
         const user = await login(req.body.email, req.body.password);
         req.session.user = user;
+        res.redirect('/'); 
     } catch (err) {
         const errors = mapErrors(err);
-        res.render('login', { title: 'Login Page', data: { email: req.body.email }, errors });
+        const data = req.body.email;
+        res.render('login', { title: 'Login Page', data, errors });
         console.log(err);
     }
 });

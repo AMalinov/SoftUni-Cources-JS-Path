@@ -15,4 +15,18 @@ function mapErrors(err) {
     }
 }
 
-module.exports = mapErrors;
+function postViewModel(post) {
+    return {
+        title: post.title,
+        keyword: post.keyword,
+        location: post.location,
+        date: post.date,
+        image: post.image,
+        description: post.description,
+        author: post.author,
+        votes: post.votes,
+        rating: post.rating,
+    };
+}
+
+module.exports = { mapErrors, postViewModel };
