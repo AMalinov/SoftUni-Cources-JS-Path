@@ -1,5 +1,5 @@
 const { isUser } = require('../middleware/guards');
-const { createPost, getPostById } = require('../services/post');
+const { createPost, getPostById, updatePost } = require('../services/post');
 const { mapErrors, postViewModel } = require('../util/mappers');
 
 const router = require('express').Router();
@@ -38,6 +38,29 @@ router.get('/edit/:id', isUser(), async (req, res) => {
     }
 
     res.render('edit', { title: 'Edit Post', post });
+});
+
+router.post('/edit/:id', isUser(), async (req, res) => {
+    const id = req.params.id;
+    const post = {
+        title: req.body.title,
+        keyword: req.body.keyword,
+        location: req.body.location,
+        date: req.body.date,
+        image: req.body.image,
+        description: req.body.description
+    };
+
+    try {
+        await updatePost(id, post);
+        res.redirect('/catalog/' + id);
+    } catch (err) {
+        console.error(err);
+        const error = mapErrors(err);
+        post._id = id;
+        res.render('edit', { title: 'Edit Post', post, error});
+
+    }
 });
 
 module.exports = router;
