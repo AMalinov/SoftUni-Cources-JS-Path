@@ -43,7 +43,7 @@ router.post('/login', isGuest(), async (req, res) => {
     try {
         const user = await login(req.body.email, req.body.password);
         req.session.user = user;
-        res.redirect('/'); 
+        res.redirect('/');
     } catch (err) {
         const errors = mapErrors(err);
         const data = req.body.email;
