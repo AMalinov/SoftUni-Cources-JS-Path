@@ -3,10 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
+    <title>{{title}}</title>
 
-    <!-- Do not forget to change the path to the css file -->
-    <link href="../static/css/style.css" type="text/css" rel="stylesheet">
+    <link href="/static/css/style.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -14,35 +13,37 @@
 
     <div id="box">
 
-        <!-- In case of error, you should display div with class "error-container" -->
-        <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
-        <!--
+        {{#if errors}}
         <div class="error-container">
-            <p>Error</p>
-        </div>-->
-
+            {{#each errors}}
+            <p>{{msg}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
 
         <nav>
-            <!-- Do not forget to change the path to the image -->
-            <img src="./static/img/logo.png" alt="logo">
+            <img src="/static/img/logo.png" alt="logo">
 
             <ul class="menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">All Posts</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/catalog">All Posts</a></li>
+                {{#if hasUser}}
                 <!-- Logged users -->
-                <li><a href="#">Create Post</a></li>
-                <li><a href="#">Posts of {{email-of-user}}</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="/create">Create Post</a></li>
+                <li><a href="/profile">Posts of {{user.email}}</a></li>
+                <li><a href="/logout">Logout</a></li>
+                {{else}}
                 <!-- Guest users -->
-                <li><a href="#">Register</a></li>
-                <li><a href="#">Login</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+                {{/if}}
             </ul>
 
         </nav>
 
         <main>
 
-            <section id="home">
+            {{!-- <section id="home">
                 <div class="home-container">
 
                     <div class="short-info">
@@ -67,13 +68,14 @@
                 </div>
 
             </section>
+            --}}
 
-
+            {{{body}}}
         </main>
 
 
         <footer>
-            © Js Back-End Exam 2021
+            &copy; Js Back-End Exam 2021
         </footer>
     </div>
 
