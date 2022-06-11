@@ -19,3 +19,19 @@ exports.register = async ({ username, password, repeatPassword }) => {
     return createdUser;
     // User.create(userData);
 };
+
+exports.login = async ({ username, password }) => {
+    let user = await User.findOne({ username });
+
+    if (!user) {
+        return;
+    }
+
+    const isValid = await bcrypt.compare(password, user.password);
+
+    if (isValid) {
+        return user;
+    } else {
+        return;
+    }
+};
