@@ -8,7 +8,7 @@ router.get('/register', (req, res) => {
 router.post('/register', async (req, res) => {
     let createdUser = await authService.register(req.body);
 
-    if(createdUser) {
+    if (createdUser) {
         res.redirect('/auth/login');
     } else {
         res.redirect('404');
@@ -22,11 +22,12 @@ router.get('/login', (req, res) => {
 router.post('/login', async (req, res) => {
     let token = await authService.login(req.body);
 
-    if(!token) {
-       return res.redirect('/404');
+    if (!token) {
+        return res.redirect('/404');
     }
 
-    console.log(token);
+    res.cookie('session', token);
+    
     res.redirect('/');
 });
 
