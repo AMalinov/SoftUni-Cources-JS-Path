@@ -6,7 +6,6 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/register', async (req, res) => {
-    // console.log(req.body);
     let createdUser = await authService.register(req.body);
 
     if(createdUser) {
@@ -14,6 +13,15 @@ router.post('/register', async (req, res) => {
     } else {
         res.redirect('404');
     }
+});
+
+router.get('/login', (req, res) => {
+    res.render('auth/login');
+});
+
+router.post('/login', (req, res) => {
+    console.log(req.body);
+    res.end();
 });
 
 module.exports = router;
