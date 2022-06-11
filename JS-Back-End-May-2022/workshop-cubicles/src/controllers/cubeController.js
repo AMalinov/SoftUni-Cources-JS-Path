@@ -45,4 +45,22 @@ router.post('/:cubeId/attach-accessory', async (req, res) => {
     res.redirect(`/cube/details/${req.params.cubeId}`);
 });
 
+router.get('/:cubeId/edit', async (req, res) => {
+    const cube = await cubeService.getOne(req.params.cubeId).lean();
+
+    if (!cube) {
+        return res.redirect('/404');
+    }
+
+    res.render('cube/edit', { cube });
+});
+
+router.post('/:cubeId/edit', async (req, res) => {
+    // console.log(req.body);
+    const cube = await cubeService.getOne(req.params.cubeId);
+
+    res.redirect(`/cube/details/${cube._id}`);
+});
+
+
 module.exports = router;
