@@ -47,7 +47,7 @@ router.post('/:cubeId/attach-accessory', async (req, res) => {
 
 router.get('/:cubeId/edit', async (req, res) => {
     const cube = await cubeService.getOne(req.params.cubeId).lean();
-
+    cube[`difficultyLevel${cube.difficultyLevel}`] = true;
     if (!cube) {
         return res.redirect('/404');
     }
@@ -57,9 +57,9 @@ router.get('/:cubeId/edit', async (req, res) => {
 
 router.post('/:cubeId/edit', async (req, res) => {
     // console.log(req.body);
-    const cube = await cubeService.getOne(req.params.cubeId);
+    let modifiedCube = await cubeService.edit(req.params.cubeId, req.body);
 
-    res.redirect(`/cube/details/${cube._id}`);
+    res.redirect(`/cube/details/${modifiedCube._id}`);
 });
 
 
