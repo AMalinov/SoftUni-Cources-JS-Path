@@ -1,7 +1,9 @@
 const express = require('express');
 const hbs = require('express-handlebars');
+
 const { PORT } = require('./config/enviorments');
 const routes = require('./routes');
+const { dbInit } = require('./config/db');
 const app = express();
 
 app.engine('hbs', hbs.engine({
@@ -14,4 +16,5 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.use(routes);
 
+dbInit();
 app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}...`));
