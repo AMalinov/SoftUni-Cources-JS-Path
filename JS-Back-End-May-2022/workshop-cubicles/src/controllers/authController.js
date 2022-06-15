@@ -27,15 +27,22 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    let token = await authService.login(req.body);
+    try {
+        let token = await authService.login(req.body);
 
-    if (!token) {
-        return res.redirect('/404');
+
+        if (!token) {
+            return res.redirect('/404');
+        }
+
+        res.cookie('session', token, { httpOnly: true });
+
+        res.redirect('/');
+
+    } catch (error) {
+        res.status(400).render('auth/login', { error: error.message });
     }
 
-    res.cookie('session', token, { httpOnly: true });
-
-    res.redirect('/');
 });
 
 router.get('/logout', (req, res) => {
