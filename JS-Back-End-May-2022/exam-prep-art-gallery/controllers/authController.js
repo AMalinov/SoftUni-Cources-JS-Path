@@ -36,7 +36,8 @@ router.post('/register',isGuest, async (req, res) => {
     try {
         const createdUser = await authService.create({ password, ...userData });
         const token = await authService.createToken(createdUser);
-
+        console.log(token);
+        console.log(createdUser);
         res.cookie(COOKIE_SESSION_NAME, token, { httpOnly: true });
         res.redirect('/');
 
