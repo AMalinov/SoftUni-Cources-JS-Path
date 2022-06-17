@@ -28,8 +28,8 @@ exports.login = async (username, password) => {
 
 exports.createToken = (user) => {
     const payload = { _id: user._id, username: user.username, address: user.address };
-
     const options = { expiresIn: '2d' };
+    
     return new Promise((resolve, reject) => {
         jwt.sign(payload, SECRET, options, (err, decodedToken) => {
             if (err) {
