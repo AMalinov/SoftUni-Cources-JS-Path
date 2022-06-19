@@ -15,15 +15,21 @@ exports.login = async (username, password) => {
         };
     }
 
-    const isValid = bcrypt.compare(password, user.password);
+
+    const isValid = await bcrypt.compare(password, user.password);
 
     if (!isValid) {
-        throw {
-            message: 'Cannot find username or password'
-        };
+        return new Error('Cannot find username or password');
     }
-
     return user;
+
+    // if (isValid) {
+    //     return user;
+    // } else {
+    //     throw {
+    //         message: 'Cannot find username or password'
+    //     };
+    // }
 };
 
 exports.createToken = (user) => {

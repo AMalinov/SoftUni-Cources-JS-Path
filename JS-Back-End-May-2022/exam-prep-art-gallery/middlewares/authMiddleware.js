@@ -10,7 +10,7 @@ exports.auth = (req, res, next) => {
             if (err) {
                 res.clearCookie(COOKIE_SESSION_NAME);
                 
-                return next(err);
+                return res.redirect('/auth/login');
             }
             req.user = decodedToken;
             res.locals.user = decodedToken;
