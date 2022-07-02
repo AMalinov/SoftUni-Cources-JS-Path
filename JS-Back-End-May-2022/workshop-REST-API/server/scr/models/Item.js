@@ -1,4 +1,4 @@
-const { model, Schema } = require('mongoose');
+const { model, Schema, Types: { ObjectId } } = require('mongoose');
 
 const URL_PATTERN = /^https?:\/\/(.+)/;
 
@@ -21,7 +21,8 @@ const itemSchema = new Schema({
         },
         required: true
     },
-    material: { type: String }
+    material: { type: String },
+    _ownerId: { type: ObjectId, ref: 'User' }
 });
 
 const Item = model('Item', itemSchema);
