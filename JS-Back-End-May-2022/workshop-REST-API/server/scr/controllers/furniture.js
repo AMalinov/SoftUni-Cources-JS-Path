@@ -1,4 +1,5 @@
 const api = require('../services/futniture');
+const errorMapper = require('../util/errorMapper');
 const router = require('express').Router();
 
 router.get('/', async (req, res) => {
@@ -22,7 +23,9 @@ router.post('/', async (req, res) => {
         res.json(result);
     } catch (err) {
         console.error(err);
-        res.status(400).json({ message: 'Request error' });
+        console.log(err.name);
+        const message = errorMapper(err);
+        res.status(400).json({ message });
     }
 });
 
@@ -60,7 +63,8 @@ router.put('/:id', async (req, res) => {
             res.status(404).json({ message: `Item ${id} not found!` });
         } else {
             console.error(err);
-            res.status(400).json({ message: 'Request error' });
+            const message = errorMapper(err);
+            res.status(400).json({ message });
         }
     }
 });
