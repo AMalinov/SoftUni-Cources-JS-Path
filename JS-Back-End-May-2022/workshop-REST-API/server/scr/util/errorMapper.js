@@ -8,5 +8,4 @@ module.exports = (error) => {
     } else {
         return error.message;
     }
-
 }
