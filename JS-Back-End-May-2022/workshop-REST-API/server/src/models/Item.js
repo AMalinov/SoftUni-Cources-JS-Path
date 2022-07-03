@@ -1,7 +1,6 @@
 const { model, Schema, Types: { ObjectId } } = require('mongoose');
 
 const URL_PATTERN = /^https?:\/\/(.+)/;
-
 const itemSchema = new Schema({
     make: { type: String, minLength: [4, 'Make must be at least 4 characters long'] },
     model: { type: String, minLength: [4, 'Model must be at least 4 characters long'] },

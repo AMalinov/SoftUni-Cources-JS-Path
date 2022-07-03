@@ -2,6 +2,7 @@ const api = require('../services/user');
 
 const router = require('express').Router();
 
+
 router.post('/register', async (req, res) => {
     const { email, password } = req.body;
 
@@ -15,7 +16,7 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    const {email, password} = req.body;
+    const { email, password } = req.body;
 
     try {
         const result = await api.login(email, password);
@@ -26,7 +27,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get('/logout', (req,res) => {
+router.get('/logout', (req, res) => {
     api.logout(req.user.token);
     res.status(204).end();
 });

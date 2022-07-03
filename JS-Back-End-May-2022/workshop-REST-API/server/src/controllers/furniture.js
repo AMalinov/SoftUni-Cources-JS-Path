@@ -1,15 +1,20 @@
-const { isAuth, isOwner } = require('../middlewares/guards');
-const preload = require('../middlewares/preload');
-const api = require('../services/futniture');
-const errorMapper = require('../util/errorMapper');
 const router = require('express').Router();
 
+const { isAuth } = require('../middlewares/guards');
+const preload = require('../middlewares/preload');
+const api = require('../services/furniture');
+const errorMapper = require('../util/errorMapper');
+
+
 router.get('/', async (req, res) => {
-    res.json(await api.getAll());
+    try {
+        res.json(await api.getAll(req.query.where));
+    } catch (err) {
+        res.status(400).json({ message: 'Bad request' });
+    }
 });
 
 router.post('/', isAuth(), async (req, res) => {
-
     const item = {
         make: req.body.make,
         model: req.body.model,
@@ -26,29 +31,26 @@ router.post('/', isAuth(), async (req, res) => {
         res.json(result);
     } catch (err) {
         console.error(err);
-        console.log(err.name);
         const message = errorMapper(err);
         res.status(400).json({ message });
     }
 });
 
-router.get('/:id', preload(), (req, res) => {
+router.get('/:id', preload(api), (req, res) => {
     res.json(res.locals.item);
 });
 
-router.put('/:id', preload(), isOwner(), async (req, res) => {
-
+router.put('/:id', preload(api) , async (req, res) => {
     try {
         const result = await api.updateById(res.locals.item, req.body);
         res.json(result);
     } catch (err) {
         console.error(err);
-        const message = errorMapper(err);
-        res.status(400).json({ message });
+        res.status(400).json({ message: 'Request error' });
     }
 });
 
-router.delete('/:id', isAuth(), isOwner(), async (req, res) => {
+router.delete('/:id', isAuth(), async (req, res) => {
     const id = req.params.id;
 
     try {
@@ -56,8 +58,9 @@ router.delete('/:id', isAuth(), isOwner(), async (req, res) => {
         res.json(result);
     } catch (err) {
         console.error(err);
-        res.status(404).json({ message: `Item ${id} not found!` });
+        res.status(404).json({ message: `Item ${id} not found` });
     }
 });
+
 
 module.exports = router;

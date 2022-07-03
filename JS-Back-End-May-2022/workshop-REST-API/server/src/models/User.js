@@ -1,11 +1,9 @@
 const { model, Schema } = require('mongoose');
 
-const URL_PATTERN = /^https?:\/\/(.+)/;
 
 const userSchema = new Schema({
     email: { type: String, required: true },
     hashedPassword: { type: String, required: true }
-
 });
 
 userSchema.index({ email: 1 }, {

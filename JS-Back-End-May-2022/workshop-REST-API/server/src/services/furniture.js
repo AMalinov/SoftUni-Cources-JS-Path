@@ -1,7 +1,11 @@
-const Item = require("../models/Item");
+const Item = require('../models/Item');
 
 
-async function getAll() {
+async function getAll(query) {
+    if (query) {
+        const userId = query.split('=')[1].slice(1, -1);
+        return Item.find({ _ownerId: userId });
+    }
     return Item.find({});
 }
 
@@ -15,7 +19,6 @@ async function create(item) {
         img: item.img,
         material: item.material,
         _ownerId: item._ownerId
-
     });
 
     await result.save();
@@ -24,7 +27,7 @@ async function create(item) {
 }
 
 async function getById(id) {
-    return await Item.findById(id);
+    return Item.findById(id);
 }
 
 async function updateById(existing, item) {
@@ -42,7 +45,7 @@ async function updateById(existing, item) {
 }
 
 async function deleteById(id) {
-    await Item.findByIdAndDelete(id);
+    return await Item.findByIdAndDelete(id);
 }
 
 module.exports = {

@@ -4,8 +4,7 @@ module.exports = (error) => {
             .entries(error.errors)
             .map(([key, err]) => err.properties.message)
             .join('\n');
-
     } else {
         return error.message;
     }
-}
+};

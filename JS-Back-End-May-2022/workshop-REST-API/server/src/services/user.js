@@ -2,8 +2,10 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 
-const JWT_SECRET = ';lsdkfl;asKJ FA;SLKJ L;ASFK JDS;LFHK ;LEWJR ;EASL NFasfdasdf ';
+
 const blacklist = new Set();
+
+const JWT_SECRET = 't gcsergcserg  b920n3w4pc[w3tcawert6v9';
 
 async function register(email, password) {
     // check if email is taken
@@ -12,8 +14,10 @@ async function register(email, password) {
     if (existing) {
         throw new Error('Email is taken');
     }
+
     // hash password
     const hashedPassword = await bcrypt.hash(password, 10);
+
     // store user
     const user = new User({
         email,
@@ -22,27 +26,23 @@ async function register(email, password) {
 
     await user.save();
 
-    // create session token
-    // return result
-
     return createSession(user);
 }
 
 async function login(email, password) {
     // check if user exists
     const user = await User.findOne({ email: new RegExp(`^${email}$`, 'i') });
+
     if (!user) {
         throw new Error('Incorrect email or password');
     }
 
     // verify password
-    const match = await bcrypt.compare(password, user?.hashedPassword);
+    const match = await bcrypt.compare(password, user.hashedPassword);
 
     if (!match) {
         throw new Error('Incorrect email or password');
     }
-    // create session token
-    // return result
 
     return createSession(user);
 }
@@ -52,7 +52,6 @@ function logout(token) {
 }
 
 function createSession(user) {
-    // create and sign payload
     const payload = {
         email: user.email,
         _id: user._id
@@ -60,7 +59,6 @@ function createSession(user) {
 
     const accessToken = jwt.sign(payload, JWT_SECRET);
 
-    // return token
     return {
         email: user.email,
         accessToken,
@@ -69,16 +67,15 @@ function createSession(user) {
 }
 
 function validateToken(token) {
-    if(blacklist.has(token)) {
-        throw new Error('Token is blacklisted!');
+    if (blacklist.has(token)) {
+        throw new Error('Token is blacklisted');
     }
     return jwt.verify(token, JWT_SECRET);
 }
 
-
 module.exports = {
     register,
     login,
-    validateToken,
-    logout
+    logout,
+    validateToken
 };
